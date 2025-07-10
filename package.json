@@ -1,0 +1,27 @@
+{
+	"name": "generate-combinations-api",
+	"version": "1.0.0",
+	"type": "module",
+	"main": "App.js",
+	"scripts": {
+		"start": "babel-node ./source/Server.js",
+		"dev": "nodemon --exec babel-node ./source/Server.js",
+		"db:init": "node ./source/scripts/dbInit.js"
+	},
+	"dependencies": {
+		"body-parser": "^2.2.0",
+		"dotenv": "^17.1.0",
+		"express": "^5.1.0",
+		"joi": "^17.13.3",
+		"mysql2": "^3.14.1",
+		"nodemon": "^3.1.10",
+		"pino": "^9.7.0",
+		"pino-loki": "^2.6.0"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.28.0",
+		"@babel/core": "^7.28.0",
+		"@babel/node": "^7.28.0",
+		"@babel/preset-env": "^7.28.0"
+	}
+}
