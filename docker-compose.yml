@@ -1,4 +1,23 @@
 services:
+  app:
+    build: .
+    container_name: combinations
+    ports:
+      - "3000:3000"
+    environment:
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASSWORD=root
+      - DB_NAME=combinations
+      - APP_PORT=3000
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      mysql:
+        condition: service_healthy
+    command: ["node", "source/server.js"]
+
   mysql:
     image: mysql:8
     container_name: db
@@ -16,23 +35,6 @@ services:
       timeout: 5s
       retries: 5
       start_period: 10s
-
-  app:
-    build: .
-    container_name: combinations
-    ports:
-      - "3000:3000"
-    environment:
-      - DB_HOST=db
-      - DB_USER=root
-      - DB_PASSWORD=root
-      - DB_NAME=combinations
-      - APP_PORT=3000
-    volumes:
-      - .:/app
-    depends_on:
-      - mysql
-    command: ["node", "source/Server.js"]
 
 volumes:
   mysql_data:
